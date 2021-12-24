@@ -33,4 +33,4 @@ dataSources:
                 handler: handleMoveMade
               - event: GameCreated(uint256)
                 handler: handleGameCreated
-          file: ./src/mapping.ts
+          file: ./src/mappings/goc.ts

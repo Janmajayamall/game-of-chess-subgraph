@@ -8,11 +8,11 @@ type ExampleEntity @entity {
 type Game @entity {
 	id: ID! # gameId
 	boardMapString: String!
-	state: BigInt!
-	side: BigInt!
-	winner: BigInt!
+	state: Int!
+	side: Int!
+	winner: Int!
 	enpassantSq: BigInt!
-	moveCount: BigInt!
+	moveCount: Int!
 	bkC: Boolean!
 	bqC: Boolean!
 	wkC: Boolean!
@@ -23,7 +23,7 @@ type Market @entity {
 	id: ID! # moveValue
 	moveValue: BigInt!
 	game: Game!
-	moveCount: BigInt!
+	moveCount: Int!
 
 	sourceSq: Int!
 	targetSq: Int!
