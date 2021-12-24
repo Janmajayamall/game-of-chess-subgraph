@@ -8,12 +8,12 @@ export function loadUserMarket(
 	userAddress: Address,
 	moveValue: BigInt
 ): UserMarket {
-	const id = userAddress.toHex() + "-" + moveValue.toString();
+	const id = userAddress.toHex() + "-" + moveValue.toHex();
 	var userMarket = UserMarket.load(id);
 	if (!userMarket) {
 		userMarket = new UserMarket(id);
 		userMarket.user = userAddress.toHex();
-		userMarket.market = moveValue.toString();
+		userMarket.market = moveValue.toHex();
 	}
 	return userMarket;
 }

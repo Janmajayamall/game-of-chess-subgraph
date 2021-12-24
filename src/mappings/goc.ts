@@ -1,4 +1,4 @@
-import { Address,, BigInt } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 import {
 	getGameId,
 	updateMarketChosenTo,
@@ -8,7 +8,11 @@ import {
 	saveUserMarket,
 	updateTokenBalance,
 	getOutcomeTokenIds,
+	increaseMarketTradeVolume,
+	increaseTradeCountBy1,
+	getTradesCount,
 } from "../entities/";
+import { updateTradeHistory } from "../entities/tradeHistory";
 import {
 	BetRedeemed,
 	GameCreated,
@@ -24,21 +28,53 @@ export function handleMarketCreated(event: MarketCreated) {
 }
 
 export function handleOutcomeBought(event: OutcomeBought) {
-	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
-	// update trade volume
+	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
+
+	// update trade volume & count
+	increaseTradeCountBy1(event.params.moveValue);
+	increaseMarketTradeVolume(event.params.moveValue, event.params.amountIn);
+
+	// update trade history
+	const tradesCount = getTradesCount(event.params.moveValue);
+	updateTradeHistory(
+		event.params.by,
+		event.params.moveValue,
+		event.params.amountIn,
+		event.params.amunt0Out,
+		event.params.amount1Out,
+		true,
+		tradesCount,
+		event.block.timestamp
+	);
 }
 
 export function handleOutcomeSold(event: OutcomeSold) {
-	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
-	// update trade volume
+	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
+
+	// update trade volume & count
+	increaseTradeCountBy1(event.params.moveValue);
+	increaseMarketTradeVolume(event.params.moveValue, event.params.amountOut);
+
+	// update trade history
+	const tradesCount = getTradesCount(event.params.moveValue);
+	updateTradeHistory(
+		event.params.by,
+		event.params.moveValue,
+		event.params.amountOut,
+		event.params.amunt0In,
+		event.params.amount1In,
+		false,
+		tradesCount,
+		event.block.timestamp
+	);
 }
 
 export function handleWinningRedeemed(event: WinningRedeemed) {
-    saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
+	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
 }
 
 export function handleBetRedeemed(event: BetRedeemed) {
-    saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
+	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
 }
 
 export function handleMoveMade(event: MoveMade) {

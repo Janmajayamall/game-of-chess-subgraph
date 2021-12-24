@@ -36,6 +36,7 @@ type Market @entity {
 	chosenMove: Boolean!
 
 	tradeVolume: BigDecimal!
+	tradesCount: BigInt!
 
 	# outcome tokens ids
 	oToken0Id: BigInt!
@@ -61,4 +62,16 @@ type UserMarket @entity {
 	id: ID! # {user}-{moveValue}
 	user: User!
 	market: Market!
+}
+
+type TradeHistory @entity {
+	id: ID! # {user}-{moveValue}
+	user: User!
+	market: Market!
+	amountC: BigDecimal!
+	amount0: BigDecimal!
+	amount1: BigDecimal!
+	buy: Boolean!
+	tradeIndex: BigInt!
+	timestamp: BigInt!
 }

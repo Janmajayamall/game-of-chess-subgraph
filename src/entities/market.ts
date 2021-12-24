@@ -1,6 +1,6 @@
 import { Market } from "./../../generated/schema";
 import { Goc as GocContract, MoveMade } from "./../../generated/Goc/Goc";
-import { convertBigIntToDecimal, GOC_ADDRESS } from "./../helpers";
+import { convertBigIntToDecimal, GOC_ADDRESS, ONE_BI } from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 export function getGameId(moveValue: BigInt): BigInt {
@@ -12,10 +12,14 @@ export function getOutcomeTokenIds(moveValue: BigInt): [BigInt, BigInt] {
 	return [market.oToken0Id, market.oToken1Id];
 }
 
+export function getTradesCount(moveValue: BigInt): BigInt {
+	return loadMarket(moveValue).tradesCount;
+}
+
 export function loadMarket(moveValue: BigInt): Market {
-	var market = Market.load(moveValue.toString());
+	var market = Market.load(moveValue.toHex());
 	if (!market) {
-		market = new Market(moveValue.toString());
+		market = new Market(moveValue.toHex());
 	}
 	return market;
 }
@@ -53,6 +57,12 @@ export function updateMarketDetails(moveValue: BigInt) {
 export function increaseMarketTradeVolume(moveValue: BigInt, by: BigInt) {
 	var market = loadMarket(moveValue);
 	market.tradeVolume = market.tradeVolume.plus(convertBigIntToDecimal(by));
+	market.save();
+}
+
+export function increaseTradeCountBy1(moveValue: BigInt) {
+	var market = loadMarket(moveValue);
+	market.tradesCount = market.tradesCount.plus(ONE_BI);
 	market.save();
 }
 
