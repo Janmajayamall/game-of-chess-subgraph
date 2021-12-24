@@ -18,6 +18,8 @@ dataSources:
           abis:
               - name: Goc
                 file: ./abis/Goc.json
+              - name: GocRouter
+                file: ./abis/GocRouter.json
           eventHandlers:
               - event: MarketCreated(uint256,address)
                 handler: handleMarketCreated

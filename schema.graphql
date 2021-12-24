@@ -36,4 +36,29 @@ type Market @entity {
 	chosenMove: Boolean!
 
 	tradeVolume: BigDecimal!
+
+	# outcome tokens ids
+	oToken0Id: BigInt!
+	oToken1Id: BigInt!
+
+	users: [UserMarket!]! @derivedFrom(field: "market")
+}
+
+type TokenBalance @entity {
+	id: ID! # {user}-{tokenId}
+	tokenId: BigInt!
+	user: User!
+	market: Market!
+	balance: BigDecimal!
+}
+
+type User @entity {
+	id: ID!
+	markets: [UserMarket!]! @derivedFrom(field: "user")
+}
+
+type UserMarket @entity {
+	id: ID! # {user}-{moveValue}
+	user: User!
+	market: Market!
 }

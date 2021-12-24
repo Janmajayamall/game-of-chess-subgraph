@@ -1,6 +1,12 @@
-import { updateMarketChosenTo, updateMarketDetails } from "../entities/market";
+import { updateGameDetails } from "../entities/game";
+import {
+	getGameId,
+	updateMarketChosenTo,
+	updateMarketDetails,
+} from "../entities/market";
 import {
 	BetRedeemed,
+	GameCreated,
 	MarketCreated,
 	MoveMade,
 	OutcomeBought,
@@ -31,4 +37,9 @@ export function handleBetRedeemed(event: BetRedeemed) {
 export function handleMoveMade(event: MoveMade) {
 	// update chosen one to true & the rest to false
 	updateMarketChosenTo(event.params.moveValue, true);
+	updateGameDetails(getGameId(event.params.moveValue));
+}
+
+export function handleGameCreated(event: GameCreated) {
+	updateGameDetails(event.params.gameId);
 }

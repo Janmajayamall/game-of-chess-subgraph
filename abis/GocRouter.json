@@ -1,0 +1,103 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "gocAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "_gameId",
+				"type": "uint16"
+			}
+		],
+		"name": "getGameBoardString",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "_gameId",
+				"type": "uint16"
+			}
+		],
+		"name": "getGameState",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint64[12]",
+						"name": "bitboards",
+						"type": "uint64[12]"
+					},
+					{
+						"internalType": "uint8",
+						"name": "state",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "side",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "winner",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint16",
+						"name": "moveCount",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint64",
+						"name": "enpassantSq",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bool",
+						"name": "bkC",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "bqC",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "wkC",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "wqC",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct IGocDataTypes.GameState",
+				"name": "gameState",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]

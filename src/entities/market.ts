@@ -3,6 +3,10 @@ import { Goc as GocContract } from "./../../generated/Goc/Goc";
 import { convertBigIntToDecimal, GOC_ADDRESS } from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
+export function getGameId(moveValue: BigInt): BigInt {
+	return BigInt.fromString(loadMarket(moveValue).game);
+}
+
 export function loadMarket(moveValue: BigInt): Market {
 	var market = Market.load(moveValue.toString());
 	if (!market) {
@@ -33,6 +37,11 @@ export function updateMarketDetails(moveValue: BigInt) {
 	market.targetPiece = marketMetadata.targetPiece;
 	market.promotedToPiece = marketMetadata.promotedToPiece;
 	market.moveFlag = marketMetadata.moveFlag;
+
+	const tokenIds = gocContract.getOutcomeReservesTokenIds(moveValue);
+	market.oToken0Id = tokenIds.value0;
+	market.oToken1Id = tokenIds.value1;
+
 	market.save();
 }
 

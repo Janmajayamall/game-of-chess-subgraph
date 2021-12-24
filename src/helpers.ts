@@ -1,4 +1,3 @@
-
 import {
 	BigInt,
 	BigDecimal,
@@ -25,3 +24,4 @@ export function convertBigIntToDecimal(
 }
 
 export const GOC_ADDRESS = ADDRESS_ZERO;
+export const GOC_ROUTER_ADDRESS = ADDRESS_ZERO;
