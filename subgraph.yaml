@@ -1,0 +1,36 @@
+specVersion: 0.0.2
+schema:
+    file: ./schema.graphql
+dataSources:
+    - kind: ethereum/contract
+      name: Goc
+      network: arbitrum-rinkeby
+      source:
+          address: "0xed53fa304E7fcbab4E8aCB184F5FC6F69Ed54fF6"
+          abi: Goc
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.5
+          language: wasm/assemblyscript
+          entities:
+              - Game
+              - Market
+          abis:
+              - name: Goc
+                file: ./abis/Goc.json
+          eventHandlers:
+              - event: MarketCreated(uint256,address)
+                handler: handleMarketCreated
+              - event: OutcomeBought(uint256,address)
+                handler: handleOutcomeBought
+              - event: OutcomeSold(uint256,address)
+                handler: handleOutcomeSold
+              - event: WinningRedeemed(uint256)
+                handler: handlerWinningRedeemed
+              - event: BetRedeemed(uint256)
+                handler: handleBetRedeemed
+              - event: MoveMade(uint256)
+                handler: handleMoveMade
+              - event: GameCreated(uint256)
+                handler: handleGameCreated
+          file: ./src/mapping.ts

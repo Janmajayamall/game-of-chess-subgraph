@@ -1,0 +1,39 @@
+type ExampleEntity @entity {
+	id: ID!
+	count: BigInt!
+	_owner: Bytes! # address
+	_operator: Bytes! # address
+}
+
+type Game @entity {
+	id: ID! # gameId
+	boardMapString: String!
+	state: BigInt!
+	side: BigInt!
+	winner: BigInt!
+	enpassantSq: BigInt!
+	moveCount: BigInt!
+	bkC: Boolean!
+	bqC: Boolean!
+	wkC: Boolean!
+	wqC: Boolean!
+}
+
+type Market @entity {
+	id: ID! # moveValue
+	moveValue: BigInt!
+	game: Game!
+	moveCount: BigInt!
+
+	sourceSq: Int!
+	targetSq: Int!
+	moveBySq: Int!
+	sourcePiece: Int!
+	targetPiece: Int!
+	promotedToPiece: Int!
+	moveFlag: Int!
+
+	chosenMove: Boolean!
+
+	tradeVolume: BigDecimal!
+}
