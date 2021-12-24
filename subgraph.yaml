@@ -23,13 +23,13 @@ dataSources:
           eventHandlers:
               - event: MarketCreated(uint256,address)
                 handler: handleMarketCreated
-              - event: OutcomeBought(uint256,address)
+              - event: OutcomeBought(uint256,address,uint256,uint256,uint256)
                 handler: handleOutcomeBought
-              - event: OutcomeSold(uint256,address)
+              - event: OutcomeSold(uint256,address,uint256,uint256,uint256)
                 handler: handleOutcomeSold
-              - event: WinningRedeemed(uint256)
+              - event: WinningRedeemed(uint256,address)
                 handler: handlerWinningRedeemed
-              - event: BetRedeemed(uint256)
+              - event: BetRedeemed(uint256,address)
                 handler: handleBetRedeemed
               - event: MoveMade(uint256)
                 handler: handleMoveMade

@@ -1,9 +1,14 @@
-import { updateGameDetails } from "../entities/game";
+import { Address,, BigInt } from "@graphprotocol/graph-ts";
 import {
 	getGameId,
 	updateMarketChosenTo,
 	updateMarketDetails,
-} from "../entities/market";
+	updateGameDetails,
+	saveUser,
+	saveUserMarket,
+	updateTokenBalance,
+	getOutcomeTokenIds,
+} from "../entities/";
 import {
 	BetRedeemed,
 	GameCreated,
@@ -19,19 +24,21 @@ export function handleMarketCreated(event: MarketCreated) {
 }
 
 export function handleOutcomeBought(event: OutcomeBought) {
+	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
 	// update trade volume
 }
 
 export function handleOutcomeSold(event: OutcomeSold) {
+	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
 	// update trade volume
 }
 
 export function handleWinningRedeemed(event: WinningRedeemed) {
-	// reset user's token balance
+    saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
 }
 
 export function handleBetRedeemed(event: BetRedeemed) {
-	// reset user's token balance
+    saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue)
 }
 
 export function handleMoveMade(event: MoveMade) {
@@ -42,4 +49,14 @@ export function handleMoveMade(event: MoveMade) {
 
 export function handleGameCreated(event: GameCreated) {
 	updateGameDetails(event.params.gameId);
+}
+
+function saveUserMarketAndTokenBalances(user: Address, moveValue: BigInt) {
+	saveUser(user);
+	saveUserMarket(user, moveValue);
+
+	// update token balance
+	const oTokenIds = getOutcomeTokenIds(moveValue);
+	updateTokenBalance(oTokenIds[0], user, moveValue);
+	updateTokenBalance(oTokenIds[1], user, moveValue);
 }
