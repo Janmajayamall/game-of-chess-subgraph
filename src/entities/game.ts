@@ -3,24 +3,25 @@ import { GocRouter as GocRouterContract } from "./../../generated/Goc/GocRouter"
 import { GOC_ROUTER_ADDRESS } from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
-export function loadGame(gameId: BigInt): Game {
-	var game = Game.load(gameId.toString());
+export function loadGame(gameId: i32): Game {
+	var game = Game.load(BigInt.fromI32(gameId).toHex());
 	if (!game) {
-		game = new Game(game.toString());
+		game = new Game(BigInt.fromI32(gameId).toHex());
 	}
 	return game;
 }
 
-export function updateGameDetails(gameId: BigInt): void {
+export function updateGameDetails(gameId: i32): void {
 	var game = loadGame(gameId);
 
 	const gocRouterContract = GocRouterContract.bind(
 		Address.fromString(GOC_ROUTER_ADDRESS)
 	);
 	const gameState = gocRouterContract.getGameState(gameId);
-	const boardMapString = gocRouterContract.getGameBoardString(gameId);
+	const fenString = gocRouterContract.getGameFenString(gameId);
 
-	game.boardMapString = boardMapString;
+	game.gameId = gameId;
+	game.fenString = fenString;
 	game.state = gameState.state;
 	game.side = gameState.side;
 	game.winner = gameState.winner;

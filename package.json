@@ -8,7 +8,7 @@
 		"create-local": "graph create --node http://localhost:8020/ janmajayamall/game-of-chess-subgraph",
 		"remove-local": "graph remove --node http://localhost:8020/ janmajayamall/game-of-chess-subgraph",
 		"deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 janmajayamall/game-of-chess-subgraph",
-		"deploy-hosted-prod": "graph auth --product hosted-service $ACCESS_TOKEN && graph deploy --product hosted-service janmajayamall/game-of-chess-subgraph"
+		"deploy-hosted": "graph auth --product hosted-service $ACCESS_TOKEN && graph deploy --product hosted-service janmajayamall/game-of-chess-subgraph"
 	},
 	"dependencies": {
 		"@graphprotocol/graph-cli": "0.22.4",

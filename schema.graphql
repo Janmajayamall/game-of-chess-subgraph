@@ -1,13 +1,7 @@
-type ExampleEntity @entity {
-	id: ID!
-	count: BigInt!
-	_owner: Bytes! # address
-	_operator: Bytes! # address
-}
-
 type Game @entity {
 	id: ID! # gameId
-	boardMapString: String!
+	gameId: Int!
+	fenString: String!
 	state: Int!
 	side: Int!
 	winner: Int!
@@ -23,15 +17,17 @@ type Market @entity {
 	id: ID! # moveValue
 	moveValue: BigInt!
 	game: Game!
+	gameId: Int!
 	moveCount: Int!
 
-	sourceSq: Int!
-	targetSq: Int!
-	moveBySq: Int!
-	sourcePiece: Int!
-	targetPiece: Int!
-	promotedToPiece: Int!
-	moveFlag: Int!
+	sourceSq: BigInt!
+	targetSq: BigInt!
+
+	moveBySq: BigInt!
+	sourcePiece: BigInt!
+	targetPiece: BigInt!
+	promotedToPiece: BigInt!
+	moveFlag: BigInt!
 
 	chosenMove: Boolean!
 

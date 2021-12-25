@@ -1,5 +1,5 @@
 import { Address, Bytes, BigInt } from "@graphprotocol/graph-ts";
-import { UserMarket } from "../../generated/schema";
+import { UserMarket } from "./../../generated/schema";
 
 /**
  * Update functions

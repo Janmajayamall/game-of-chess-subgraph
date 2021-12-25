@@ -6,8 +6,9 @@ dataSources:
       name: Goc
       network: arbitrum-rinkeby
       source:
-          address: "0xAeDAf1f1b4A4279347E2710429F7F5B13613dFF9"
+          address: "0x498Ab8220C4b409ba7299FfeC99484EC27d9101E"
           abi: Goc
+          startBlock: 7892376
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.5
@@ -33,6 +34,6 @@ dataSources:
                 handler: handleBetRedeemed
               - event: MoveMade(uint256)
                 handler: handleMoveMade
-              - event: GameCreated(uint256)
+              - event: GameCreated(uint16)
                 handler: handleGameCreated
           file: ./src/mappings/goc.ts

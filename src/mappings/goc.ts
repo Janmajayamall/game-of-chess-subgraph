@@ -11,7 +11,7 @@ import {
 	increaseMarketTradeVolume,
 	increaseTradeCountBy1,
 	getTradesCount,
-} from "../entities/";
+} from "../entities";
 import { updateTradeHistory } from "../entities/tradeHistory";
 import {
 	BetRedeemed,

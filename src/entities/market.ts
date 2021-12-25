@@ -1,15 +1,17 @@
 import { Market } from "./../../generated/schema";
 import { Goc as GocContract } from "./../../generated/Goc/Goc";
+import { GocRouter as GocRouterContract } from "./../../generated/Goc/GocRouter";
 import {
 	convertBigIntToDecimal,
 	GOC_ADDRESS,
+	GOC_ROUTER_ADDRESS,
 	ONE_BI,
 	OutcomeTokenIds,
 } from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
-export function getGameId(moveValue: BigInt): BigInt {
-	return BigInt.fromString(loadMarket(moveValue).game);
+export function getGameId(moveValue: BigInt): i32 {
+	return loadMarket(moveValue).gameId;
 }
 
 export function getOutcomeTokenIds(moveValue: BigInt): OutcomeTokenIds {
@@ -34,24 +36,27 @@ export function updateMarketDetails(moveValue: BigInt): void {
 	var market = loadMarket(moveValue);
 
 	const gocContract = GocContract.bind(Address.fromString(GOC_ADDRESS));
-
-	market.moveValue = moveValue;
-	market.game = gocContract.decodeGameIdFromMoveValue(moveValue);
-	market.moveCount = gocContract.decodeMoveCountFromMoveValue(moveValue);
-
-	const bitboards = gocContract.getGameState(market.game).bitboards;
-	const marketMetadata = gocContract.decodeMoveMetadataFromMoveValue(
-		moveValue,
-		bitboards
+	const gocRouterContract = GocRouterContract.bind(
+		Address.fromString(GOC_ROUTER_ADDRESS)
 	);
 
+	const gameId = gocRouterContract.getGameIdFromMoveValue(moveValue);
+	const moveCount = gocRouterContract.getMoveCountFromMoveValue(moveValue);
+	market.moveValue = moveValue;
+	market.game = BigInt.fromI32(gameId).toHex();
+	market.gameId = gameId;
+	market.moveCount = moveCount;
+
+	const marketMetadata = gocRouterContract.getMoveMetadataFromMoveValue(
+		moveValue
+	);
 	market.sourceSq = marketMetadata.sourceSq;
 	market.targetSq = marketMetadata.targetSq;
 	market.moveBySq = marketMetadata.moveBySq;
-	market.sourcePiece = marketMetadata.sourcePiece;
-	market.targetPiece = marketMetadata.targetPiece;
-	market.promotedToPiece = marketMetadata.promotedToPiece;
-	market.moveFlag = marketMetadata.moveFlag;
+	market.sourcePiece = BigInt.fromI32(marketMetadata.sourcePiece);
+	market.targetPiece = BigInt.fromI32(marketMetadata.targetPiece);
+	market.promotedToPiece = BigInt.fromI32(marketMetadata.promotedToPiece);
+	market.moveFlag = BigInt.fromI32(marketMetadata.moveFlag);
 
 	const tokenIds = gocContract.getOutcomeReservesTokenIds(moveValue);
 	market.oToken0Id = tokenIds.value0;

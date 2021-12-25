@@ -1,6 +1,6 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts";
-import { TradeHistory } from "../../generated/schema";
-import { convertBigIntToDecimal } from "../helpers";
+import { TradeHistory } from "./../../generated/schema";
+import { convertBigIntToDecimal } from "./../helpers";
 
 export function loadTradeHistory(
 	user: Address,
