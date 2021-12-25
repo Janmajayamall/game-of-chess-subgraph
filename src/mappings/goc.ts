@@ -23,11 +23,11 @@ import {
 	WinningRedeemed,
 } from "./../../generated/Goc/Goc";
 
-export function handleMarketCreated(event: MarketCreated) {
+export function handleMarketCreated(event: MarketCreated): void {
 	updateMarketDetails(event.params.moveValue);
 }
 
-export function handleOutcomeBought(event: OutcomeBought) {
+export function handleOutcomeBought(event: OutcomeBought): void {
 	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
 
 	// update trade volume & count
@@ -48,7 +48,7 @@ export function handleOutcomeBought(event: OutcomeBought) {
 	);
 }
 
-export function handleOutcomeSold(event: OutcomeSold) {
+export function handleOutcomeSold(event: OutcomeSold): void {
 	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
 
 	// update trade volume & count
@@ -69,25 +69,28 @@ export function handleOutcomeSold(event: OutcomeSold) {
 	);
 }
 
-export function handleWinningRedeemed(event: WinningRedeemed) {
+export function handleWinningRedeemed(event: WinningRedeemed): void {
 	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
 }
 
-export function handleBetRedeemed(event: BetRedeemed) {
+export function handleBetRedeemed(event: BetRedeemed): void {
 	saveUserMarketAndTokenBalances(event.params.by, event.params.moveValue);
 }
 
-export function handleMoveMade(event: MoveMade) {
+export function handleMoveMade(event: MoveMade): void {
 	// update chosen one to true & the rest to false
 	updateMarketChosenTo(event.params.moveValue, true);
 	updateGameDetails(getGameId(event.params.moveValue));
 }
 
-export function handleGameCreated(event: GameCreated) {
+export function handleGameCreated(event: GameCreated): void {
 	updateGameDetails(event.params.gameId);
 }
 
-function saveUserMarketAndTokenBalances(user: Address, moveValue: BigInt) {
+function saveUserMarketAndTokenBalances(
+	user: Address,
+	moveValue: BigInt
+): void {
 	saveUser(user);
 	saveUserMarket(user, moveValue);
 

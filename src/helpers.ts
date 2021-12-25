@@ -23,5 +23,5 @@ export function convertBigIntToDecimal(
 	return value.divDecimal(base);
 }
 
-export const GOC_ADDRESS = ADDRESS_ZERO;
-export const GOC_ROUTER_ADDRESS = ADDRESS_ZERO;
+export const GOC_ADDRESS = "0xAeDAf1f1b4A4279347E2710429F7F5B13613dFF9";
+export const GOC_ROUTER_ADDRESS = "0x0F0714C3F5DE59b3C3BC633A93AB856c7Eb4FfBd";

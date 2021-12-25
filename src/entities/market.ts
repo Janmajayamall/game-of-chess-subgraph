@@ -1,5 +1,5 @@
 import { Market } from "./../../generated/schema";
-import { Goc as GocContract, MoveMade } from "./../../generated/Goc/Goc";
+import { Goc as GocContract } from "./../../generated/Goc/Goc";
 import { convertBigIntToDecimal, GOC_ADDRESS, ONE_BI } from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
@@ -24,7 +24,7 @@ export function loadMarket(moveValue: BigInt): Market {
 	return market;
 }
 
-export function updateMarketDetails(moveValue: BigInt) {
+export function updateMarketDetails(moveValue: BigInt): void {
 	var market = loadMarket(moveValue);
 
 	const gocContract = GocContract.bind(Address.fromString(GOC_ADDRESS));
@@ -54,19 +54,19 @@ export function updateMarketDetails(moveValue: BigInt) {
 	market.save();
 }
 
-export function increaseMarketTradeVolume(moveValue: BigInt, by: BigInt) {
+export function increaseMarketTradeVolume(moveValue: BigInt, by: BigInt): void {
 	var market = loadMarket(moveValue);
 	market.tradeVolume = market.tradeVolume.plus(convertBigIntToDecimal(by));
 	market.save();
 }
 
-export function increaseTradeCountBy1(moveValue: BigInt) {
+export function increaseTradeCountBy1(moveValue: BigInt): void {
 	var market = loadMarket(moveValue);
 	market.tradesCount = market.tradesCount.plus(ONE_BI);
 	market.save();
 }
 
-export function updateMarketChosenTo(moveValue: BigInt, value: boolean) {
+export function updateMarketChosenTo(moveValue: BigInt, value: boolean): void {
 	var market = loadMarket(moveValue);
 	market.chosenMove = value;
 	market.save();

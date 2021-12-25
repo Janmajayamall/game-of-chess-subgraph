@@ -1,7 +1,6 @@
-import { Address, Bytes, BigInt, BigDecimal } from "@graphprotocol/graph-ts";
-import { TokenBalance, TradeHistory } from "../../generated/schema";
-import { Goc as GocContract } from "../../generated/Goc/Goc";
-import { convertBigIntToDecimal, emptyBytes, GOC_ADDRESS } from "../helpers";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { TradeHistory } from "../../generated/schema";
+import { convertBigIntToDecimal } from "../helpers";
 
 export function loadTradeHistory(
 	user: Address,

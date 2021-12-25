@@ -1,14 +1,6 @@
 import { Game } from "./../../generated/schema";
-import {
-	GameCreated__Params,
-	Goc as GocContract,
-} from "./../../generated/Goc/Goc";
 import { GocRouter as GocRouterContract } from "./../../generated/Goc/GocRouter";
-import {
-	convertBigIntToDecimal,
-	GOC_ADDRESS,
-	GOC_ROUTER_ADDRESS,
-} from "./../helpers";
+import { GOC_ROUTER_ADDRESS } from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 export function loadGame(gameId: BigInt): Game {

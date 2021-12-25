@@ -1,7 +1,7 @@
-import { Address, Bytes, BigInt, BigDecimal } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { TokenBalance } from "../../generated/schema";
 import { Goc as GocContract } from "../../generated/Goc/Goc";
-import { convertBigIntToDecimal, emptyBytes, GOC_ADDRESS } from "../helpers";
+import { convertBigIntToDecimal, GOC_ADDRESS } from "../helpers";
 
 export function loadTokenBalance(tokenId: BigInt, user: Address): TokenBalance {
 	const id = user.toHex() + "-" + tokenId.toHex();
