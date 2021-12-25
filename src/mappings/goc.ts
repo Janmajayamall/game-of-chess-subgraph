@@ -96,6 +96,6 @@ function saveUserMarketAndTokenBalances(
 
 	// update token balance
 	const oTokenIds = getOutcomeTokenIds(moveValue);
-	updateTokenBalance(oTokenIds[0], user, moveValue);
-	updateTokenBalance(oTokenIds[1], user, moveValue);
+	updateTokenBalance(oTokenIds.oToken0Id, user, moveValue);
+	updateTokenBalance(oTokenIds.oToken1Id, user, moveValue);
 }

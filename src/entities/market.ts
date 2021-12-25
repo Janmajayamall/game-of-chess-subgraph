@@ -1,15 +1,21 @@
 import { Market } from "./../../generated/schema";
 import { Goc as GocContract } from "./../../generated/Goc/Goc";
-import { convertBigIntToDecimal, GOC_ADDRESS, ONE_BI } from "./../helpers";
+import {
+	convertBigIntToDecimal,
+	GOC_ADDRESS,
+	ONE_BI,
+	OutcomeTokenIds,
+} from "./../helpers";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 export function getGameId(moveValue: BigInt): BigInt {
 	return BigInt.fromString(loadMarket(moveValue).game);
 }
 
-export function getOutcomeTokenIds(moveValue: BigInt): [BigInt, BigInt] {
+export function getOutcomeTokenIds(moveValue: BigInt): OutcomeTokenIds {
 	const market = loadMarket(moveValue);
-	return [market.oToken0Id, market.oToken1Id];
+	const tokenIds = new OutcomeTokenIds(market.oToken0Id, market.oToken0Id);
+	return tokenIds;
 }
 
 export function getTradesCount(moveValue: BigInt): BigInt {

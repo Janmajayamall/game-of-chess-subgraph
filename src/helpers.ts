@@ -25,3 +25,13 @@ export function convertBigIntToDecimal(
 
 export const GOC_ADDRESS = "0xAeDAf1f1b4A4279347E2710429F7F5B13613dFF9";
 export const GOC_ROUTER_ADDRESS = "0x0F0714C3F5DE59b3C3BC633A93AB856c7Eb4FfBd";
+
+export class OutcomeTokenIds {
+	oToken0Id: BigInt;
+	oToken1Id: BigInt;
+
+	constructor(_oToken0Id: BigInt = ONE_BI, _oToken1Id: BigInt = ONE_BI) {
+		this.oToken0Id = _oToken0Id;
+		this.oToken1Id = _oToken1Id;
+	}
+}

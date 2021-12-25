@@ -11,7 +11,7 @@ export function loadGame(gameId: BigInt): Game {
 	return game;
 }
 
-export function updateGameDetails(gameId: BigInt) {
+export function updateGameDetails(gameId: BigInt): void {
 	var game = loadGame(gameId);
 
 	const gocRouterContract = GocRouterContract.bind(
