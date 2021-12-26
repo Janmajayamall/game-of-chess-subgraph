@@ -1,8 +1,7 @@
 type Game @entity {
 	id: ID! # gameId
 	gameId: Int!
-	fenString: String!
-	bitboardsStr: String!
+	bitboards: [BigInt!]!
 	state: Int!
 	side: Int!
 	winner: Int!

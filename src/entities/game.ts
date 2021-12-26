@@ -18,12 +18,9 @@ export function updateGameDetails(gameId: i32): void {
 		Address.fromString(GOC_ROUTER_ADDRESS)
 	);
 	const gameState = gocRouterContract.getGameState(gameId);
-	const fenString = gocRouterContract.getGameFenString(gameId);
-	const bitboardsStr = gocRouterContract.getGameBitboardsStr(gameId);
 
 	game.gameId = gameId;
-	game.fenString = fenString;
-	game.bitboardsStr = bitboardsStr;
+	game.bitboards = gameState.bitboards;
 	game.state = gameState.state;
 	game.side = gameState.side;
 	game.winner = gameState.winner;

@@ -40,16 +40,13 @@ export function updateMarketDetails(moveValue: BigInt): void {
 		Address.fromString(GOC_ROUTER_ADDRESS)
 	);
 
-	const gameId = gocRouterContract.getGameIdFromMoveValue(moveValue);
-	const moveCount = gocRouterContract.getMoveCountFromMoveValue(moveValue);
-	market.moveValue = moveValue;
-	market.game = BigInt.fromI32(gameId).toHex();
-	market.gameId = gameId;
-	market.moveCount = moveCount;
-
 	const marketMetadata = gocRouterContract.getMoveMetadataFromMoveValue(
 		moveValue
 	);
+	market.moveValue = moveValue;
+	market.game = BigInt.fromI32(marketMetadata.gameId).toHex();
+	market.gameId = marketMetadata.gameId;
+	market.moveCount = marketMetadata.moveCount;
 	market.sourceSq = marketMetadata.sourceSq;
 	market.targetSq = marketMetadata.targetSq;
 	market.moveBySq = marketMetadata.moveBySq;

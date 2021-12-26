@@ -6,9 +6,9 @@ dataSources:
       name: Goc
       network: arbitrum-rinkeby
       source:
-          address: "0x4C42B00757FaE8aeE5F09a6b5363B6f476f7201d"
+          address: "0x5d24A59077844FAB0ef62423496026d5ab2D87F3"
           abi: Goc
-          startBlock: 7921301
+          startBlock: 7922356
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.5
