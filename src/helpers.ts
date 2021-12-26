@@ -23,8 +23,8 @@ export function convertBigIntToDecimal(
 	return value.divDecimal(base);
 }
 
-export const GOC_ADDRESS = "0x498Ab8220C4b409ba7299FfeC99484EC27d9101E";
-export const GOC_ROUTER_ADDRESS = "0x8384B1F3F26420c1578D64398c45a205F3131C1B";
+export const GOC_ADDRESS = "0x4C42B00757FaE8aeE5F09a6b5363B6f476f7201d";
+export const GOC_ROUTER_ADDRESS = "0x474F8a2E737f01D4A659c3beB04029BA73ED77C9";
 
 export class OutcomeTokenIds {
 	oToken0Id: BigInt;

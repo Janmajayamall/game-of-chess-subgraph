@@ -2,6 +2,7 @@ type Game @entity {
 	id: ID! # gameId
 	gameId: Int!
 	fenString: String!
+	bitboardsStr: String!
 	state: Int!
 	side: Int!
 	winner: Int!

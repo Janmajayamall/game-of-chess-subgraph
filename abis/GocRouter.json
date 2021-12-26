@@ -18,6 +18,25 @@
         "type": "uint16"
       }
     ],
+    "name": "getGameBitboardsStr",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "_gameId",
+        "type": "uint16"
+      }
+    ],
     "name": "getGameFenString",
     "outputs": [
       {
