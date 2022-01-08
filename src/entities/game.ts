@@ -26,6 +26,7 @@ export function updateGameDetails(gameId: i32): void {
 	game.winner = gameState.winner;
 	game.enpassantSq = gameState.enpassantSq;
 	game.moveCount = gameState.moveCount;
+	game.halfMoveCount = gameState.halfMoveCount;
 	game.bkC = gameState.bkC;
 	game.bqC = gameState.bqC;
 	game.wkC = gameState.wkC;

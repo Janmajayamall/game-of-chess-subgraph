@@ -7,6 +7,7 @@ type Game @entity {
 	winner: Int!
 	enpassantSq: BigInt!
 	moveCount: Int!
+	halfMoveCount: Int!
 	bkC: Boolean!
 	bqC: Boolean!
 	wkC: Boolean!
